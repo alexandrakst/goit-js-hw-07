@@ -35,20 +35,26 @@ function onGalleryItemsContainerClick(evt) {
   onModal(evt);
 }
 
+let instance;
 function onModal(evt) {
-  const instance = basicLightbox.create(`
+  instance = basicLightbox.create(
+    `
     <img src="${evt.target.dataset.source}" />
-`);
-  onShow: instance => {
-    galleryItemsContainer.addEventListener('keydown', onEscapeButton);
-  };
-  onClose: instance => {
-    galleryItemsContainer.removeEventListener('keydown', onEscapeButton);
-  };
+    `,
+    {
+      onShow: instance => {
+        window.addEventListener('keydown', onEscapeButton);
+      },
+      onClose: instance => {
+        window.removeEventListener('keydown', onEscapeButton);
+      },
+    }
+  );
 
   instance.show();
 }
 
-function onEscapeButton(evt) {
-  if (evt.key === 'Escape') instance.close();
+function onEscapeButton(event) {
+  console.log('event key', event.key);
+  if (event.key === 'Escape') instance.close();
 }
