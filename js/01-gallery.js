@@ -32,6 +32,7 @@ function onGalleryItemsContainerClick(evt) {
     return;
   }
   console.log(evt.target);
+  onModal(evt);
 }
 
 function onModal(evt) {
