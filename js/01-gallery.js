@@ -1,8 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-console.log(galleryItems);
-
 const galleryItemsContainer = document.querySelector('.gallery');
 const galleryMarkup = createGalleryMarkup(galleryItems);
 galleryItemsContainer.insertAdjacentHTML('beforeend', galleryMarkup);
@@ -31,7 +29,6 @@ function onGalleryItemsContainerClick(evt) {
   if (evt.target.nodeName !== 'IMG') {
     return;
   }
-  console.log(evt.target);
   onModal(evt);
 }
 
@@ -43,14 +40,13 @@ function onModal(evt) {
     `,
     {
       onShow: instance => {
-        window.addEventListener('keydown', onEscapeButton);
+        galleryItemsContainer.addEventListener('keydown', onEscapeButton);
       },
       onClose: instance => {
-        window.removeEventListener('keydown', onEscapeButton);
+        galleryItemsContainer.removeEventListener('keydown', onEscapeButton);
       },
     }
   );
-
   instance.show();
 }
 
