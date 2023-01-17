@@ -51,6 +51,5 @@ function onModal(evt) {
 }
 
 function onEscapeButton(event) {
-  console.log('event key', event.key);
   if (event.key === 'Escape') instance.close();
 }
