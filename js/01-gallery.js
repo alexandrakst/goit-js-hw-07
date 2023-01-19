@@ -40,10 +40,10 @@ function onModal(evt) {
     `,
     {
       onShow: instance => {
-        galleryItemsContainer.addEventListener('keydown', onEscapeButton);
+        document.addEventListener('keydown', onEscapeButton);
       },
       onClose: instance => {
-        galleryItemsContainer.removeEventListener('keydown', onEscapeButton);
+        document.removeEventListener('keydown', onEscapeButton);
       },
     }
   );

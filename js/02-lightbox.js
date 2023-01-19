@@ -24,10 +24,6 @@ function createGalleryMarkup(image) {
 
 function onGalleryItemsContainerClick(evt) {
   evt.preventDefault();
-  if (evt.target.nodeName !== 'IMG') {
-    return;
-  }
-  onModal(evt);
 }
 
 const galleryLightBox = new SimpleLightbox('.gallery a', {
@@ -35,24 +31,3 @@ const galleryLightBox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-
-function onModal(evt) {
-  instance = SimpleLightbox.create(
-    `
-    <img src="${evt.target.dataset.source}" />
-    `,
-    {
-      onShow: instance => {
-        galleryItemsContainer.addEventListener('keydown', onEscapeButton);
-      },
-      onClose: instance => {
-        galleryItemsContainer.removeEventListener('keydown', onEscapeButton);
-      },
-    }
-  );
-  instance.show();
-}
-
-function onEscapeButton(event) {
-  if (event.key === 'Escape') instance.close();
-}
